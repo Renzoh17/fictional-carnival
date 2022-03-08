@@ -9,11 +9,13 @@ const app = new Application({
 	height: 480
 });
 
-Loader.shared.add({url: "./mancha.png", name: "lamancha"});
-Loader.shared.add({url: "./clampy.png", name: "Clamply"});
+Loader.shared.add({url: "./pikachu.png", name: "pika"}); //Cargar al principio
+
+
+//Sprite.from("./mancha.png"); //Cargar en el momento
 
 Loader.shared.onComplete.add(()=>{
-	const clampy: Sprite = Sprite.from("lamancha");
+	const clampy: Sprite = Sprite.from("pika");
 
 	console.log("Hola mundo!",clampy.width,clampy.height);
 	
