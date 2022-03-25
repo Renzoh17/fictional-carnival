@@ -1,4 +1,6 @@
-import { Application, Container, Loader, Point, Sprite } from 'pixi.js'
+import { Application, Loader } from 'pixi.js'
+import { assets } from './assets';
+import { Scene } from './Scene';
 
 const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
@@ -26,37 +28,11 @@ window.addEventListener("resize", ()=>{
 })
 window.dispatchEvent(new Event("resize"));
 
-Loader.shared.add({url: "./pikachu.png", name: "Pika"}); //Cargar al principio
-Loader.shared.add({url: "./gorrofino.png", name: "Gorro"});
-
-//Sprite.from("./mancha.png"); //Cargar en el momento
+Loader.shared.add(assets); 
 
 Loader.shared.onComplete.add(()=>{
-	const pika: Sprite = Sprite.from("Pika");
-
-	console.log("Hola mundo!",pika.width,pika.height);
-	
-	//clampy.anchor.set(0);
-	
-	const gorro: Sprite=Sprite.from("Gorro");
-
-	gorro.scale.set(0.65,0.65);
-	gorro.position.set(35,-90);
-	gorro.angle=7;
-	const pikaWithHat: Container = new Container();
-	pikaWithHat.addChild(pika);
-	pikaWithHat.addChild(gorro);
-	pikaWithHat.scale.set(0.5);
-	pikaWithHat.x=200;
-	pikaWithHat.y=200;
-
-	console.log(gorro.toGlobal(new Point()));
-
-	/*const aux=hat.parent.toLocal(new Point(0,360));
-	hat.position.x=aux.x;
-	hat.position.y=aux.y; */
-
-	app.stage.addChild(pikaWithHat);
+	const myScene = new Scene();
+	app.stage.addChild(myScene);
 });
 
 Loader.shared.load();
